@@ -29,6 +29,7 @@ body{
     background: whitesmoke;
     padding: 30px;
     border-radius: 10px;
+    margin-top: 50%;
 }
 
 .container .input_container{
@@ -104,50 +105,24 @@ display: grid;
 </head>
 <body>
     <div class="container">
-        <div class="input_container">
-            <form action="" method="POST" class="input_box">
-                {% csrf_token %}
-                {{form.name}}
-                <!-- <input type="text" class="input_box" placeholder="Enter a City name"> -->
-                <button type="submit" class="input_box" disabled>
-                    Add City
-                </button>
-            </form>
+        <form action="" method="POST" class="input_container">
+            {% csrf_token %}
+            {{form.name}}
+            <!-- <input type="text" class="input_box" placeholder="Enter a City name"> -->
+            <button type="submit" class="input_box" disabled>
+                Add City
+            </button>
+        </form>
         
-           
-        </div>
-        {%for weather_details in weather_data%}
         <div class="detail_container">
-            <div class="weather_details">
-                <img src="https://openweathermap.org/img/w/{{weather_details.icon}}.png" alt="icon for the weather">
-                <p class="city_name">{{weather_details.city}}</p>
-                 <p class="weather_decription">{{weather_details.description}}</p>
-                <p class="tempature_value">{{weather_details.temperature}} oF</p>
-            </div>
-        {%endfor%}
-
-
-            <!-- <div class="weather_details">
-                <img src="" alt="icon for the weather">
-                <p class="city_name">Las Vegas</p>
-                <p class="tempature_value">70oC</p>
-            </div>
-            <div class="weather_details">
-                <img src="" alt="icon for the weather">
-                <p class="city_name">Las Vegas</p>
-                <p class="tempature_value">70oC</p>
-            </div>
-            <div class="weather_details">
-                <img src="" alt="icon for the weather">
-                <p class="city_name">Las Vegas</p>
-                <p class="tempature_value">70oC</p>
-            </div>
-            <div class="weather_details">
-                <img src="" alt="icon for the weather">
-                <p class="city_name">Las Vegas</p>
-                <p class="tempature_value">70oC</p>
-            </div> -->
-
+            {%for weather_details in weather_data %}
+                <div class="weather_details">
+                    <img src="https://openweathermap.org/img/w/{{weather_details.icon}}.png" alt="icon for the weather">
+                    <p class="city_name">{{weather_details.city}}</p>
+                    <p class="weather_decription">{{weather_details.description}}</p>
+                    <p class="tempature_value">{{weather_details.temperature}} oF</p>
+                </div>
+            {%endfor%}
         </div>
     </div>
 </body>

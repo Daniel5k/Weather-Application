@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/weatherproject/weatherApp/static/css/index.css">
+    <title>Weather Application Page</title>
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Courier New', Courier, monospace;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(1, 45, 70)
+}
+
+.container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    background: whitesmoke;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.container .input_container{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.container .input_container .input_box{
+    padding: 10px;
+    outline: none;
+}
+.container .input_container input:nth-child(2){
+    background: rgb(1, 45, 70);
+    color: whitesmoke;
+    border-left: none;
+}
+.container .input_container input:nth-child(2):hover{
+    background: rgb(3, 80, 124);
+}
+.container .detail_container{
+    position: relative;
+display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    padding: 10px;
+    
+}
+
+.detail_container .weather_details{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid black;
+}
+ .weather_details p:nth-child(n+2){
+    font-size: 1.4em;
+    font-weight: 600;
+}
+.weather_details img{
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    body{
+    
+        height: 100%;
+    
+}
+    .container{
+    position: absolute;
+    top: 20%
+}
+    .container .input_container{
+        gap: 10px;
+        flex-direction: column;
+
+
+}
+    .container .detail_container{
+        display: flex;
+        flex-direction: column;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="input_container">
+            <form action="" method="POST" class="input_box">
+                {% csrf_token %}
+                {{form.name}}
+                <!-- <input type="text" class="input_box" placeholder="Enter a City name"> -->
+                <button type="submit" class="input_box" disabled>
+                    Add City
+                </button>
+            </form>
+        
+           
+        </div>
+        {%for weather_details in weather_data%}
+        <div class="detail_container">
+            <div class="weather_details">
+                <img src="https://openweathermap.org/img/w/{{weather_details.icon}}.png" alt="icon for the weather">
+                <p class="city_name">{{weather_details.city}}</p>
+                 <p class="weather_decription">{{weather_details.description}}</p>
+                <p class="tempature_value">{{weather_details.temperature}} oF</p>
+            </div>
+        {%endfor%}
+
+
+            <!-- <div class="weather_details">
+                <img src="" alt="icon for the weather">
+                <p class="city_name">Las Vegas</p>
+                <p class="tempature_value">70oC</p>
+            </div>
+            <div class="weather_details">
+                <img src="" alt="icon for the weather">
+                <p class="city_name">Las Vegas</p>
+                <p class="tempature_value">70oC</p>
+            </div>
+            <div class="weather_details">
+                <img src="" alt="icon for the weather">
+                <p class="city_name">Las Vegas</p>
+                <p class="tempature_value">70oC</p>
+            </div>
+            <div class="weather_details">
+                <img src="" alt="icon for the weather">
+                <p class="city_name">Las Vegas</p>
+                <p class="tempature_value">70oC</p>
+            </div> -->
+
+        </div>
+    </div>
+</body>
+</html>
